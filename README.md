@@ -46,7 +46,11 @@ Along with the recent performance baseline (RPB) discussed above, multiple featu
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/fdcab939-16a7-4d03-b661-f0e30828b13c)
 
+## Methods
 
-**<h4>>Table S1. Features Included in Predictive Modeling**
+
+
+
+**<h4>Table S1. Features Included in Predictive Modeling**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/85179d7f-b8d5-45ef-b9ba-1183c0378b7c)
