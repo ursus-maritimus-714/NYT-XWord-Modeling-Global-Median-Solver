@@ -59,8 +59,10 @@ The right panel of **Figure 6** summarizes predictive features included in the m
 **Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/87bd047a-ab03-49ce-beb2-3e7c07f3c339)
 
+### Machine Learning Regression Modeling 
+After predictive features were generated for each puzzle, the best regression model for prediction of the TF (raw GMS solve time, in minutes) was found ('Best Model'). To find 'Best Model', 4 different regression models were explored using [scikitlearn (scikit-learn 1.1.1)](https://scikit-learn.org/stable/auto_examples/release_highlights/plot_release_highlights_1_1_0.html): Linear, Random Forest, Gradient Boosting, and HistGradient Boosting. For all model types, a 75/25 training/test split and 5-fold training set cross-validation were used. Additionally, hyperparameter grid search optimization was used per model as warranted (for ex., for Gradient Boosting the grid search was conducted for imputation type, scaler type, learning rate, maximum depth, and maximum features). 'Best Model' was a hyperparameter-optimized Gradient Boosting Regressor model (see 'Model Metrics' csv files in 'Reporting' folder for details and how this model performed compared to the other models). 
 
-
+## Key Results
 
 
 **<h4>Table S1. Features Included in Predictive Modeling**
