@@ -64,6 +64,12 @@ After predictive features were generated for each puzzle, the best regression mo
 
 ## Key Results
 
+**1)** 'Best Model' predicted the TF (raw GMS solve time, in minutes) more accurately than did a univariate linear model with puzzle day-specific, mean Global Median Solver solve time *across the entire sample period* as the sole predictive input ('Mean PDS GMST'). 'Best Model' also outperformed a model that simply guessed the mean of the training set TF, *across all 15x15 puzzle days*, for each individual puzzle ('Dummy').(**Fig. 7**). The 'Full Model' mean training error of 4.07 minutes corresponded to a 24.8% difference from the across all 15x15 puzzle days training set mean. This percent difference from the training set mean for the 'Mean PDS GMST' and 'Dummy' models was 27.3% and 50.4%, respectively.
+
+**Figure 7. Best Model Prediction Quality vs Benchmark Models**
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/6fc70494-4a74-4944-9192-1cdda5860752)
+
+
 
 **<h4>Table S1. Features Included in Predictive Modeling**
 
