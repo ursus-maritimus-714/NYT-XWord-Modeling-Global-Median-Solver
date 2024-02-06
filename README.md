@@ -40,13 +40,26 @@ One of the most important findings from the EDA as far as implications for predi
 *<h5> Puzzle-day specfic, decay-time weighted GMS recent past performance (x-axis) was calculated over the 20 day-specific puzzles previous to the next solve (y-axis).* 
 
 ###
-Along with the recent performance baseline (RPB) discussed above, multiple features pertaining to the puzzles themselves demonstrated moderately strong or strong correlations with GMS performance on individual puzzles (**Figure 5**). Two that stood out in particular for their correlational strength with GMS performance were 'Average Answer Length' (upper right panel) and 'Freshness Factor' (lower right panel), the latter of which is a proprietary XWord Info measure of the rareness of a given answer in the NYT puzzle. The density plots on the right hand side (below each correlation scatterplot) show that the distributions of these features that were highly correlated to GMST (for all 15x15 puzzles: r=.69 and .70, respectively) were well-separated across puzzle days. This is an important property for candidate predictive features to have since, as is shown in **Fig. 2**, distributions of solve times for individual puzzle days were themselves well-separated. **Supplementary Table 1** lists out, classifies and describes all features included in the modeling stage.  
+Along with the recent performance baseline (RPB) discussed above, multiple features pertaining to the puzzles themselves demonstrated moderately strong or strong correlations with GMS performance on individual puzzles (**Figure 5**). Two that stood out in particular for their correlational strength with GMS performance were 'Average Answer Length' (upper right panel) and 'Freshness Factor' (lower right panel), the latter of which is a proprietary XWord Info measure of the rareness of a given answer in the NYT puzzle. The density plots on the right hand side (below each correlation scatterplot) show that the distributions of these features that were highly correlated to GMST (for all 15x15 puzzles: r=.69 and .70, respectively) were well-separated across puzzle days. This is an important property for candidate predictive features to have since, as is shown in **Fig. 2**, distributions of solve times for individual puzzle days were themselves well-separated.   
 
 **<h4>Figure 5. Correlations of Puzzle-Related and Past-Performance Features to GMSTs**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/fdcab939-16a7-4d03-b661-f0e30828b13c)
 
 ## Methods
+
+### Predictive Feature Generation
+The right panel of **Figure 6** summarizes predictive features generated and included in the modeling stage (N=38), by class. A few key example features from each class are mentioned below. **Supplementary Table 1** comprehensively lists out, classifies and describes all included features.  
+
+* 'Solver Past Performance Features' (n=7) included features capturing recent (decay time-weighted mean of prior 10 day-specific puzzles) or longer-term (same, but prior 25) GMS performance prior to a given solve. The left panel of **Fig. 6** depicts schematically the time-decay weighting of these two features. A number of decay curves were tested in univariate linear models (see here)[for both short and long-term features, and smooth decay weighting (25,24,23.... or 10,9,8...) yielded the best predictions. This class also included mean prior performance against the specific constructor(s) of a given puzzle, normalized to account for both GMS form at the time of each solve and for the mix of puzzle days for past puzzles by specific constructor(s).  
+* 'Puzzle: Clue or Answer Features' (n=19) included 'Freshness Factor', which measured the aggregate rarity of answers in a given puzzle across all NYT crossword puzzles before or since the issue date. This class also included other measures of answer rarity, including the number of entirely unique answers in a puzzle and the 'Scrabble Score', which assigns corresponding Scrabble tile values to each letter in an answer (rarer letters = higher tile values, hence it's different angle at assessing answer rarity). On the clue side of the ledger, this class also included a count of the frequency of wordplay in clues for a given puzzle. Later week puzzles contained more such clues, and early week puzzles often contained very, very few. 
+* 'Puzzle: Grid Features' (n=11) included both the number of answers and the average answer length in a given puzzle. As puzzles get more difficult across the week, the former tends to decrease and the latter tends to increase. This class also included the number of open squares, which is a proprietary measure of XWord info capturing white squares not bordered by black squares (tends to increase as puzzles increase in difficulty across the week). This category also included features capturing other design principles of puzzles, including when puzzles deviated from standard rotational symmetry (e.g., left-right mirror or diagonal symmetry), that could have implications for their difficulty.  
+* 'Puzzle Day' (n=1) was a class one one, simply assigning a number to the puzzle day of week for a given solve. 
+
+
+**Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/87bd047a-ab03-49ce-beb2-3e7c07f3c339)
+
 
 
 
