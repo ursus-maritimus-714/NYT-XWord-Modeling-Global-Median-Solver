@@ -60,14 +60,16 @@ The right panel of **Figure 6** summarizes predictive features included in the m
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/87bd047a-ab03-49ce-beb2-3e7c07f3c339)
 
 ### Machine Learning Regression Modeling 
-After predictive features were generated for each puzzle, the best regression model for prediction of the TF (raw GMS solve time, in minutes) was found ('Best Model'). To find 'Best Model', 4 different regression models were explored using [scikitlearn (scikit-learn 1.1.1)](https://scikit-learn.org/stable/auto_examples/release_highlights/plot_release_highlights_1_1_0.html): Linear, Random Forest, Gradient Boosting, and HistGradient Boosting. For all model types, a 75/25 training/test split and 5-fold training set cross-validation were used. Additionally, hyperparameter grid search optimization was used per model as warranted (for ex., for Gradient Boosting the grid search was conducted for imputation type, scaler type, learning rate, maximum depth, and maximum features). 'Best Model' was a hyperparameter-optimized Gradient Boosting Regressor model (see 'Model Metrics' csv files in 'Reporting' folder for details and how this model performed compared to the other models). 
+After predictive features were generated for each puzzle, the best regression model for prediction of the TF (raw GMS solve time, in minutes) was found ('Best Model'). To find 'Best Model', 4 different regression models were explored using [scikitlearn (scikit-learn 1.1.1)](https://scikit-learn.org/stable/auto_examples/release_highlights/plot_release_highlights_1_1_0.html): Linear, Random Forest, Gradient Boosting, and HistGradient Boosting. For all model types, a 75/25 training/test split and 5-fold training set cross-validation were used. Additionally, hyperparameter grid search optimization was used per model as warranted (for ex., for Gradient Boosting the grid search was conducted for imputation type, scaler type, learning rate, maximum depth, and maximum features). 'Best Model' was a hyperparameter-optimized HistGradient Boosting Regressor model (see 'Model Metrics' csv files in 'Reporting' folder for details and how this model performed compared to the other models). 
 
 ## Key Results
 
 **1)** 'Best Model' predicted the TF (raw GMS solve time, in minutes) more accurately than did a univariate linear model with puzzle day-specific, mean Global Median Solver solve time *across the entire sample period* as the sole predictive input ('Mean PDS GMST'). 'Best Model' also outperformed a model that simply guessed the mean of the training set TF, *across all 15x15 puzzle days*, for each individual puzzle ('Dummy').(**Fig. 7**). The 'Full Model' mean training error of 4.07 minutes corresponded to a 24.8% difference from the across all 15x15 puzzle days training set mean. This percent difference from the training set mean for the 'Mean PDS GMST' and 'Dummy' models was 27.3% and 50.4%, respectively.
 
 **Figure 7. Best Model Prediction Quality vs Benchmark Models**
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/6fc70494-4a74-4944-9192-1cdda5860752)
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/37fa7f6b-f6ff-42ee-b30b-9c28dd482e40)
+
+
 
 
 
