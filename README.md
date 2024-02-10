@@ -16,7 +16,7 @@ The NYT crossword has been published since 1942, and many consider the "modern e
 
 **Figure 1. PCA of Select Puzzle Grid, Clue and Answer Features**                                                                  
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/e4d69316-0aa3-4a41-9a2f-e560e8e424c2)
-*<h5>The first 3 principal components accounted for 47.6% of total variance. All puzzles from Jan. 1, 2018- Feb. 9, 2024 were included in this analysis (N=2,231).*
+*<h5>The first 3 principal components accounted for 47.6% of total variance. All puzzles from Jan. 1, 2018- Feb. 10, 2024 were included in this analysis (N=2,232).*
 ###
 The overlapping distributions in GMSTs in the solve time density plot in **Figure 2** show a parallel performance phenomenon to the continuum of puzzle properties seen in **Fig. 1**; namely that while solve difficulty increased as the week progressed, puzzle days of adjacent difficulty had substantially overlapping GMST distributions. Other than for the "easy" days (Monday and Tuesday), distributions of GMSTs were quite broad. Wednesday and Saturday also had somewhat multimodal solve time distributions, supporting the notion that there were "easy" and "hard" puzzle pools/constructors at the level of specific puzzle days. The broadness of each puzzle day-specific GMST distribution over the entire sample timeframe depicted here (2018-2024) was also increased by the fairly dramatic improvement in GMS performance over those 6+ years. The temporal dynamics of this improvement will be highly evident in the next section's figures.     
 
@@ -25,7 +25,7 @@ One additional contextual note about the GMS is worth mention upfront. Though Ma
 **<h4>Figure 2. Distributions of GMSTs by Puzzle Day for Full Sample Period**                   
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/5adabd60-54e9-43bf-8667-12d72cbdb67b)
-*<h5>All puzzles from Jan. 1, 2018- Feb. 9, 2024 were included in this analysis (N=2,231).* 
+*<h5>All puzzles from Jan. 1, 2018- Feb. 10, 2024 were included in this analysis (N=2,232).* 
 
 ### Key Outcomes from the GMS EDA
 One of the most important findings from the EDA as far as implications for predictive modeling was that the GMS demonstrated marked improvement over the course of the sample period across all puzzle days (**Figure 3**). Coupled to the fact that puzzle day-specific, decay-time weighted recent past performance was highly positively correlated to performance on the next puzzle both overall (r=.86) and across puzzle days (**Figure 4**), this created an imperative to explore and potentially include different variants of this feature type in the predictive modeling stage.    
@@ -33,12 +33,12 @@ One of the most important findings from the EDA as far as implications for predi
 **Figure 3. GMS Solve Time Overview by Puzzle Day: 10-Puzzle Moving Averages and Distributions of Raw Values**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/b3f72248-99ed-463a-8ad3-547db6759d7d)
-*<h5>All puzzles from Jan. 1, 2018- Feb. 9, 2024 were included in this analysis (N=2,231).* 
+*<h5>All puzzles from Jan. 1, 2018- Feb. 10, 2024 were included in this analysis (N=2,232).* 
 
 **<h4>Figure 4. Puzzle Day-Specific, Decay-Time Weighted Recent Performance (RPB) Correlation to GMS Performance on the Next Puzzle**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/5964b2fb-c2c1-4ce8-bbfc-459b73b1a595)
-*<h5> Puzzle-day specfic, decay-time weighted GMS recent past performance (x-axis) was calculated over the 20 day-specific puzzles previous to the next solve (y-axis). All puzzles from Jan. 1, 2019- Feb. 9, 2024 were included in this analysis (N=1,866).* 
+*<h5> Puzzle-day specfic, decay-time weighted GMS recent past performance (x-axis) was calculated over the 20 day-specific puzzles previous to the next solve (y-axis). All puzzles from Jan. 1, 2019- Feb. 10, 2024 were included in this analysis (N=1,867).* 
 
 ###
 Along with the recent performance baseline (RPB) discussed above, multiple features pertaining to the puzzles themselves demonstrated moderately strong or strong correlations with GMS performance on individual puzzles (**Figure 5**). Two that stood out in particular for their correlational strength with GMS performance were 'Average Answer Length' (upper right panel) and 'Freshness Factor' (lower right panel), the latter of which is a proprietary XWord Info measure of the rareness of a given answer in the NYT puzzle. The density plots on the right hand side (below each correlation scatterplot) show that the distributions of these features that were highly correlated to GMST (for all 15x15 puzzles: r=.69 and .70, respectively) were well-separated across puzzle days. This is an important property for candidate predictive features to have since, as is shown in **Fig. 2**, distributions of solve times for individual puzzle days were themselves well-separated.   
@@ -46,21 +46,22 @@ Along with the recent performance baseline (RPB) discussed above, multiple featu
 **<h4>Figure 5. Correlations of Puzzle-Related and Past-Performance Features to GMSTs**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/fdcab939-16a7-4d03-b661-f0e30828b13c)
-*<h5> All puzzles from Jan. 1, 2019- Feb. 9, 2024 were included in these analyses (N=1,866).*
+*<h5> All puzzles from Jan. 1, 2019- Feb. 10, 2024 were included in these analyses (N=1,867).*
 
 ## Methods
 
 ### Predictive Feature Generation
-For predictive feature generation, all puzzles issued by NYT from Jan. 1 2018-Feb. 9, 2024 (N=2,231) were included. The right panel of **Figure 6** summarizes predictive features included at the outset of the modeling stage (N=38) by broad class. A few key example features from each class are mentioned below. **Supplementary Table 1** comprehensively lists out, classifies and describes all included features.  
+For predictive feature generation, all puzzles issued by NYT from Jan. 1 2018-Feb. 10, 2024 (N=2,232) were included. The right panel of **Figure 6** summarizes predictive features included at the outset of the modeling stage (N=38) by broad class. A few key example features from each class are mentioned below. **Supplementary Table 1** comprehensively lists out, classifies and describes all included features.  
 
-* 'Solver Past Performance Features' (n=9) included a subset (3) of features capturing short- (decay time-weighted mean of the 10 puzzle day-specific puzzles immediately prior to a given puzzle being predicted on), intermediate- (same, but prior 25 puzzles) or long-term (same, but prior 50) GMS past performance. The left panel of **Fig. 6** depicts schematically the time-decay weighting of this feature subset. A number of decay curves were tested in univariate linear models for short-, intermediate- and long-term features, and smooth decay weighting (e.g., 50,49,48,47...) yielded the best predictions. *However*, the advantage over flat weighting (all puzzles weighted as 1) in that context was very small, and later testing with all features included (and across models evaluated; see final section of Methods) revealed that flat weighting yielded slightly superior predictions. Furthermore, this later testing also revealed that predictions were slightly better when including *only* long-term features from this class. Thus, the ultimate 'Best Model' included only flat-weighted, long-term GMS past performance features (see Discussion for more on this subject).
+* 'Solver Past Performance Features' (n=9) included a subset (3) of features capturing short- (decay time-weighted mean of the 10 puzzle day-specific puzzles immediately prior to a given puzzle being predicted on), intermediate- (same, but prior 25 puzzles) or long-term (same, but prior 40) GMS past performance. The left panel of **Fig. 6** depicts schematically the time-decay weighting of this feature subset. A number of temporal integration windows and decay curves were tested in univariate linear models for short-, intermediate- and long-term features, and smooth decay-weighting (e.g., 40,39,38,37...) yielded the best predictions. Later testing wih the full feature set revealed, however, that predictions were slightly better when including *only* long-term features from this class. Thus, the ultimate 'Best Model' included only smooth decay-weighted, long-term GMS past performance features (see Discussion for more on this subject).
  
 * 'Puzzle: Clue or Answer Features' (n=19) included 'Freshness Factor', which measured the aggregate rarity of answers in a given puzzle across all NYT crossword puzzles before or since the issue date. This class also included other measures of answer rarity, including the number of entirely unique answers in a puzzle and the 'Scrabble Score', which assigns corresponding Scrabble tile values to each letter in an answer (rarer letters = higher tile values, hence a different angle at assessing answer rarity). On the clue side of the ledger, this class also included a count of the frequency of wordplay in clues for a given puzzle. Later week puzzles contained more such clues, and early week puzzles often contained very, very few. 
 * 'Puzzle: Grid Features' (n=11) included both the number of answers and the average answer length in a given puzzle. As puzzles got more difficult across the week, the former tended to decrease and the latter tended to increase. This class also included the number of open squares, which is a proprietary measure of XWord info capturing white squares not bordered by black squares (tended to increase as puzzles increased in difficulty across the week). This category also included features capturing other design principles of puzzles, including when puzzles deviated from standard rotational symmetry (e.g., left-right mirror or diagonal symmetry), that could have had implications for their difficulty.  
 * 'Puzzle Day' (n=1) was a class one one, simply assigning a number to the puzzle day of week for a given solve. 
 
 **Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/d61d57ba-c329-43ea-bfb2-eba1db01be53)
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/b4ea856a-404e-4dd0-aa44-697c4edad5cd)
+
 
 ### Machine Learning Regression Modeling 
 For the modeling phase, puzzles from the first year of the sample period were removed to minimize the potential effects of baseline performance volatility (see EDA linked in Intro and **Fig. 3**). This reduced the overall sample size to N=1,866. Importantly, as they were generated prior to this filtering, 'Solver Past Performance Features' included in modeling accrued from the beginning of 2018. Additonally, for the main model 21x21 puzzles (Sun) were also removed from the sample. This resulted in a final modeling 15x15 puzzle N=1,600. The 21x21 puzzles (N=266) were, however, included in by-puzzle-day modeling (see **Figure 8**). 
@@ -85,6 +86,9 @@ Though the number of puzzles included in the BPDMs (N=266; +- 1) was much smalle
 *<h5> BPDM for each day was a HistGradient Boosting Regressor, with hyperparameter optimization specific to that puzzle day. Due to the relatively small number of puzzles in the sample for each puzzle day, an 80/20 training/testing split was used to find each BPDM (212/54 puzzles for each puzzle day). Data Quality Assessments for each BPDM were inconclusive regarding sufficency of number of puzzles included.* 
 
 **<h4>Table S1. Features Included in Predictive Modeling**
+
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/2dda8c9f-0268-4ff8-bd71-9cdcd6fa2383)
+
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/acde78ac-1b63-44fe-8dc6-4b5253cd2388)
 *<h5> Note: this is the complete set of features included at the outset of predictive modeling, but some were removed through the iterative process that led to 'Best Model' for all 15x15 puzzles selection. See Methods for details.*
