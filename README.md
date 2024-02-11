@@ -60,7 +60,7 @@ For predictive feature generation, all puzzles issued by NYT from Jan. 1 2018-Fe
 * 'Puzzle Day' (n=1) was a class of one, simply assigning a number to the puzzle day of week for a given solve. 
 
 **Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/b4ea856a-404e-4dd0-aa44-697c4edad5cd)
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/c2677579-a45c-4cb6-92bb-40c6951a78ec)
 
 
 ### Machine Learning Regression Modeling 
@@ -89,7 +89,8 @@ Though the number of puzzles included in the BPDMs (N=266; +- 1) was much smalle
 
 **<h4>Table S1. Features Included in Predictive Modeling**
 
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/2dda8c9f-0268-4ff8-bd71-9cdcd6fa2383)
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/acd166b7-611e-4539-9b45-b819847403cd)
+
 
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/acde78ac-1b63-44fe-8dc6-4b5253cd2388)
