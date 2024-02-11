@@ -78,11 +78,22 @@ After predictive features were generated for each puzzle, the best regression mo
 *<h5> 'Best Model' was a Linear Regression Model (K-best features = 23).* 
 
 ###
-**2)** 'Best Model' was discovered on a puzzle day-specific basis (BPDM), including for the lone 21x21 puzzle day Sunday (**Figure 8**). Because GMS mean solve time per puzzle day varied considerably, training errors in **Fig. 8** were normalized to percentage difference from training set mean for that puzzle day. The 'Dummy' model in this puzzle day-specific context is analogous to the 'Mean PDS GMST' benchmark model in **Fig. 1**, as the 'Dummy' for all 15x15 puzzles guessed the *overall sample mean* for each puzzle regardless of puzzle day. 
+
+**2)** When individual feature classes or adjustments were systematically "subtracted" in the modeling stage ('Subtraction Analysis'), subtraction of 'Past Performance Features' resulted in (by far) the largest increase in model error (10.8%). The second largest increase in model error came with subtraction of the 'Answer Features' class (1.6%). Each other feature classes or adjustment subtracted from 'Best Model' resulted in a <1% increase in model error. **Figure 8** shows, in decreasing order of negative impact on model prediction quality, the effect of removing individual feature classes or adjustments (decay time-weighting; hatched bar) from the full 'Best Model'.    
+
+**Figure 8. Effect on Model Prediction Quality of Removing Individual Feature Classes or Adjustments from the Best Model**
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/3a747ab8-e2dc-4db4-9a10-20a5c2d5a674)
+
+Because subtraction of the 'Past Performance Features' and 'Answer Features' classes resulted in substantial reduction in prediction quality, a subanalysis looked at the impact of removing individual feature/feature types from these classes. 'Past Performance Features' included time-decay weighted GMS performance on the previous 40 puzzle day-specific puzzles ('Recent Performance Baseline'; RPB), time-decay weighted standard deviation of RPB, past performance against the constructor(s) of a given puzzle (RPB and difficulty-normalized), and number of past solves (both puzzle day specific and non-puzzle day specific versions). The left panel of **Figure 9** shows that removal of no single feature was responsible for the bulk of the large increase in model error with the removal of *all* features from this class (10.8%). Removal of recent puzzle day-specific GMS performance prior to a given solve (RPB) and normalized past performance vs the constructor(s) of a given puzzle each resulted in 1.4% increases in model error over 'Best Model'. Removal of the other features in this class each resulted in an increase of model error of <1%. 
+
+The 'Answer Features' class contributed much less of an error increase overall (1.6%) than 'Past Performance Features', but still enough to warrant looking more closely at. From the EDA phase of the project, 'Freshness Factor' and it's percentile derivatives stood out as having particularly   
+
+###
+**3)** 'Best Model' was discovered on a puzzle day-specific basis (BPDM), including for the lone 21x21 puzzle day Sunday (**Figure 10**). Because GMS mean solve time per puzzle day varied considerably, training errors in **Fig. 10** were normalized to percentage difference from training set mean for that puzzle day. The 'Dummy' model in this puzzle day-specific context is analogous to the 'Mean PDS GMST' benchmark model in **Fig. 1**, as the 'Dummy' for all 15x15 puzzles guessed the *overall sample mean* for each puzzle regardless of puzzle day. 
 
 Though the number of puzzles included in the BPDMs (N=266; +- 1) was much smaller than that in the all 15x15 puzzles model, each still outperformed its particular (not so dumb) 'Dummy'. However, high performance variability on later week puzzle days (Fri and Sat) can be seen in standard deviations that overlap with 'Dummy' model performance. Sunday (18.6% mean BPDM training error) and Monday (15.3%) stood out as the two most predictable individual puzzle days, with the other puzzle days ranging between 21-23% mean training error for BPDM. Finally, it is also worth noting that despite the much smaller sample size, each BPDM outperformed the all 15x15 puzzle days 'Best Model' (23.7%; see **Fig. 1** and associated text) on a % of mean solve time basis . 
 
-**Figure 8. Best Puzzle Day-Specific Model (BPDM) Prediction Quality**
+**Figure 10. Best Puzzle Day-Specific Model (BPDM) Prediction Quality**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/9653da3b-014f-4ca2-8c3a-d1d102735483)
 *<h5> BPDM for each day was a Linear Regression Model, with hyperparameter optimization specific to that puzzle day. Due to the relatively small number of puzzles in the sample for each puzzle day, an 80/20 training/testing split was used to find each BPDM (213/54 +-1 puzzles for each puzzle day). Data Quality Assessments for each BPDM were inconclusive regarding sufficency of number of puzzles included.* 
@@ -97,3 +108,4 @@ Though the number of puzzles included in the BPDMs (N=266; +- 1) was much smalle
 *<h5> Note: this is the complete set of features included at the outset of predictive modeling, but some were removed through the iterative process that led to 'Best Model' for all 15x15 puzzles selection. See Methods for details.*
 
 
+## Discussion
