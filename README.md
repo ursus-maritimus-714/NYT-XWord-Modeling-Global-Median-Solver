@@ -43,7 +43,7 @@ One of the most important findings from the EDA as far as implications for predi
 ###
 Along with the recent performance baseline (RPB) discussed above, multiple features pertaining to the puzzles themselves demonstrated moderately strong or strong correlations with GMS performance on individual puzzles (**Figure 5**). Two that stood out in particular for their correlational strength with GMS performance were 'Average Answer Length' (upper right panel) and 'Freshness Factor' (lower right panel), the latter of which is a proprietary XWord Info measure of the rareness of a given answer in the NYT puzzle. The density plots on the right hand side (below each correlation scatterplot) show that the distributions of these features that were highly correlated to GMST (for all 15x15 puzzles: r=.69 and .70, respectively) were well-separated across puzzle days. This is an important property for candidate predictive features to have since, as is shown in **Fig. 2**, distributions of solve times for individual puzzle days were themselves well-separated.   
 
-**<h4>Figure 5. Correlations of Puzzle-Related and Past-Performance Features to GMSTs**
+**<h4>Figure 5. Correlations of Puzzle-Related and Past Performance Features to GMSTs**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/fdcab939-16a7-4d03-b661-f0e30828b13c)
 *<h5> All puzzles from Jan. 1, 2019- Feb. 10, 2024 were included in these analyses (N=1,867).*
