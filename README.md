@@ -3,7 +3,7 @@
 ## Introduction
 
 ### Project Overview and Data Sources
-This summary reports on the results of predictive modeling of "Global Median Solver" (GMS) performance over 6+ years (Jan. 2018 - early Feb. 2024) of the [New York Times (NYT) crossword puzzle](https://www.nytimes.com/crosswords). Previously, I conducted a [comprehensive exploratory data analysis (EDA) of GMS performance](https://github.com/ursus-maritimus-714/NYT-XWord-EDA-Global-Median-Solver?tab=readme-ov-file#readme) over this sample period. From this EDA, numerous features pertaining to both the puzzles themselves as well as to the past performance of the GMS were identified as candidate features for predictive modeling of GMS solve times (GMSTs).    
+This summary reports on the results of predictive modeling of "Global Median Solver" (GMS) performance over 6+ years (Jan. 2018 - Feb. 2024) of the [New York Times (NYT) crossword puzzle](https://www.nytimes.com/crosswords). Previously, I conducted a [comprehensive exploratory data analysis (EDA) of GMS performance](https://github.com/ursus-maritimus-714/NYT-XWord-EDA-Global-Median-Solver?tab=readme-ov-file#readme) over this sample period. From this EDA, numerous features pertaining to both the puzzles themselves as well as to the past performance of the GMS were identified as candidate features for predictive modeling of GMS solve times (GMSTs).    
 
 This project relied crucially on two amazing data sources. The first, [XWord Info: New York Times Crossword Answers and Insights](https://www.xwordinfo.com/), was my source for data on the puzzles themselves. This included a number of proprietary metrics pertaining to the grids, answers, clues and constructors. XWord Info has a contract with NYT for access to the raw data underlying these metrics, but I unfortunately do not. Therefore, I will not be able to share raw or processed data that I've acquired from their site. Nonetheless, [Jupyter notebooks](https://jupyter.org/) with all of my Python code for analysis and figure generation can be found [here](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/tree/main/notebooks). The second, [XWStats](xwstats.com), was my source for historical GMS raw solve time data. From these raw solve times for each puzzle, XWStats (Matt) calculates global median solve times (GMSTs). Thus, the GMS is a composite of many different individuals who just so happened to fall at the 50th percentile on (at least) one particular puzzle's solve time distribution. Per personal communication with Matt, most puzzle dates have somewhere between 1-2K individual solver solve times recorded (with consent from each individual solver). I do *not* have the underlying raw data for solvers in the database apart from that for two experienced solvers, both of whom were also subjects of similar EDA analyses; [Individual Solver 1(IS1)](https://github.com/ursus-maritimus-714/NYT-XWord-EDA-Individual-Solver-1/blob/main/README.md) and [Individual Solver 2(IS2)](https://github.com/ursus-maritimus-714/NYT-XWord-EDA-Individual-Solver-2/blob/main/README.md) Both of these individual solvers will also be carried through predictive modeling in the near future as well. 
 
@@ -15,8 +15,9 @@ The NYT crossword has been published since 1942, and many consider the "modern e
 **Figure 1** shows dimensionality reduction via Principal Component Analysis (PCA) of 23 grid, clue and answer-related features obtained from XWord Info. This analysis demonstrates that, while puzzles from a given puzzle day do indeed aggregate with each other in n-dimensional "puzzle property space", the puzzle days themselves nonetheless exist along a continuum. Sunday is well-separated from the other puzzle days in this analysis by PCA1, which undoubtedly incorporates one or more grid size-contingent features.   
 
 **Figure 1. PCA of Select Puzzle Grid, Clue and Answer Features**                                                                  
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/e4d69316-0aa3-4a41-9a2f-e560e8e424c2)
-*<h5>The first 3 principal components accounted for 47.6% of total variance. All puzzles from Jan. 1, 2018- Feb. 10, 2024 were included in this analysis (N=2,232).*
+
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/673f0777-8039-4b91-8cf3-c4e16e6958b6)
+*<h5>The first 3 principal components accounted for 47.6% of total variance. All puzzles from Jan. 1, 2018- Feb. 19, 2024 were included in this analysis (N=2,241).*
 ###
 The overlapping distributions in GMSTs in the solve time density plot in **Figure 2** show a parallel performance phenomenon to the continuum of puzzle properties seen in **Fig. 1**; namely that while solve difficulty increased as the week progressed, puzzle days of adjacent difficulty had substantially overlapping GMST distributions. Other than for the "easy" days (Monday and Tuesday), distributions of GMSTs were quite broad. Wednesday and Saturday also had somewhat multimodal solve time distributions, supporting the notion that there were "easy" and "hard" puzzle pools/constructors at the level of specific puzzle days. The broadness of each puzzle day-specific GMST distribution over the entire sample timeframe depicted here (2018-2024) was also increased by the fairly dramatic improvement in GMS performance over those 6+ years. The temporal dynamics of this improvement will be highly evident in the next section's figures.     
 
@@ -24,29 +25,29 @@ One additional contextual note about the GMS is worth mention upfront. Though Ma
 
 **<h4>Figure 2. Distributions of GMSTs by Puzzle Day for Full Sample Period**                   
 
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/5adabd60-54e9-43bf-8667-12d72cbdb67b)
-*<h5>All puzzles from Jan. 1, 2018- Feb. 10, 2024 were included in this analysis (N=2,232).* 
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/29a93080-e085-433e-8196-40f4aacb0326)
+*<h5>All puzzles from Jan. 1, 2018- Feb. 19, 2024 were included in this analysis (N=2,241).* 
 
 ### Key Outcomes from the GMS EDA
-One of the most important findings from the EDA as far as implications for predictive modeling was that the GMS demonstrated marked improvement over the course of the sample period across all puzzle days (**Figure 3**). Coupled to the fact that puzzle day-specific, decay-time weighted recent past performance was highly positively correlated to performance on the next puzzle both overall (r=.86) and across puzzle days (**Figure 4**), this created an imperative to explore and potentially include different variants of this feature type in the predictive modeling stage.    
+One of the most important findings from the EDA as far as implications for predictive modeling was that the GMS demonstrated marked improvement over the course of the sample period across all puzzle days (**Figure 3**). Coupled to the fact that puzzle day-specific, decay-time weighted recent past performance was highly positively correlated to performance on the next puzzle both overall (r=.87) and across puzzle days (**Figure 4**), this created an imperative to explore and potentially include different variants of this feature type in the predictive modeling stage.    
 
 **Figure 3. GMS Solve Time Overview by Puzzle Day: 10-Puzzle Moving Averages and Distributions of Raw Values**
 
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/b3f72248-99ed-463a-8ad3-547db6759d7d)
-*<h5>All puzzles from Jan. 1, 2018- Feb. 10, 2024 were included in this analysis (N=2,232).* 
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/d9f458fd-5853-455b-9e5a-63a0bd9872ba)
+*<h5>All puzzles from Jan. 1, 2018- Feb. 19, 2024 were included in this analysis (N=2,241).* 
 
 **<h4>Figure 4. Puzzle Day-Specific, Decay-Time Weighted Recent Performance (RPB) Correlation to GMS Performance on the Next Puzzle**
 
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/5964b2fb-c2c1-4ce8-bbfc-459b73b1a595)
-*<h5> Puzzle-day specific, decay-time weighted GMS recent past performance (x-axis) was calculated over the 20 day-specific puzzles previous to the next solve (y-axis). All puzzles from Jan. 1, 2019- Feb. 10, 2024 were included in this analysis (N=1,867).* 
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/eb0f1dc5-944c-4e9c-9b18-e8d134db3f0d)
+*<h5> Puzzle-day specific, decay-time weighted GMS recent past performance (x-axis) was calculated over the 20 day-specific puzzles previous to the next solve (y-axis). All puzzles from Jan. 1, 2019- Feb. 19, 2024 were included in this analysis (N=1,876).* 
 
 ###
-Along with the recent performance baseline (RPB) discussed above, multiple features pertaining to the puzzles themselves demonstrated moderately strong or strong correlations with GMS performance on individual puzzles (**Figure 5**). Two that stood out in particular for their correlational strength with GMS performance were 'Average Answer Length' (upper right panel) and 'Freshness Factor' (lower right panel), the latter of which is a proprietary XWord Info measure of the rareness of a given answer in the NYT puzzle. The density plots on the right hand side (below each correlation scatterplot) show that the distributions of these features that were highly correlated to GMST (for all 15x15 puzzles: r=.69 and .70, respectively) were well-separated across puzzle days. This is an important property for candidate predictive features to have since, as is shown in **Fig. 2**, distributions of solve times for individual puzzle days were themselves well-separated.   
+Along with the recent performance baseline (RPB) discussed above, multiple features pertaining to the puzzles themselves demonstrated moderately strong or strong correlations with GMS performance on individual puzzles (**Figure 5**). Two that stood out in particular for their correlational strength with GMS performance were 'Average Answer Length' and 'Freshness Factor', the latter of which is a proprietary XWord Info measure of the rareness of a given answer in the NYT puzzle. The strengths of these positive correlations with GMSTs (for all 15x15 puzzles: r=.69 and .70, respectively) can be seen both in the correlation heatmap (A; top row - 5th and 11th columns) as well as in the overall (black) and per-puzzle day (colors) feature correlation scatterplots in panel B. The feature density plots (C) show that the distributions of these features were well-separated across puzzle days. This is an important property for candidate predictive features to have since, as is shown in **Fig. 2**, distributions of solve times for individual puzzle days were themselves well-separated.   
 
 **<h4>Figure 5. Correlations of Puzzle-Related and Past Performance Features to GMSTs**
 
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/fdcab939-16a7-4d03-b661-f0e30828b13c)
-*<h5> All puzzles from Jan. 1, 2019- Feb. 10, 2024 were included in these analyses (N=1,867).*
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/e1b107f1-c8e9-4a1d-920a-7b68b145dea3)
+*<h5> All puzzles from Jan. 1, 2019- Feb. 19, 2024 were included in these analyses (N=1,876).*
 
 ## Methods
 
