@@ -62,7 +62,7 @@ For predictive feature generation, all puzzles issued by NYT from Jan. 1 2018-Fe
 * 'Puzzle Day' (n=1) was a class of one, simply assigning a number to the puzzle day of week for a given solve. 
 
 **Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/c2677579-a45c-4cb6-92bb-40c6951a78ec)
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/6024233f-c635-4d68-9d5a-f46549718523)
 
 
 ### Machine Learning Regression Modeling 
