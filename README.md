@@ -46,7 +46,7 @@ Along with the recent performance baseline (RPB) discussed above, multiple featu
 
 **<h4>Figure 5. Correlations of Puzzle-Related and Past Performance Features to GMSTs**
 
-![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/e1b107f1-c8e9-4a1d-920a-7b68b145dea3)
+![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/80c51508-f2b7-4ecf-bb5e-d6bf52941c06)
 *<h5> All puzzles from Jan. 1, 2019- Feb. 19, 2024 were included in these analyses (N=1,876).*
 
 ## Methods
