@@ -62,7 +62,7 @@ For predictive feature generation, all puzzles issued by NYT from Jan. 1 2018-Fe
 
 * 'Puzzle Day' (n=1) was a class of one, simply assigning a number to the puzzle day of week for a given solve. 
 
-**Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
+**<h4>Figure 6. Overview of Decay-Time Weighting of Solver Past Performance Features, and Predictive Features By Class**
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/6024233f-c635-4d68-9d5a-f46549718523)
 
 
@@ -75,7 +75,7 @@ After predictive features were generated for each puzzle, the best regression mo
 
 **1)** 'Best Model' predicted the TF (raw GMS solve time, in minutes) more accurately than did a univariate linear model with puzzle day-specific (PDS), mean Global Median Solver (GMS) solve time *across the entire sample period* as the sole predictive input ('Mean PDS GMST'). 'Best Model' also outperformed a variant that simply guessed the mean of the training set TF, *across all 15x15 puzzle days*, for each individual puzzle ('Dummy')(**Figure 7**). The 'Full Model' mean training error of 3.87 minutes, which corresponded to a 23.7% difference from the training set mean across all 15x15 puzzle days. In contrast, the 'Mean PDS GMST' and 'Dummy' benchmark models had mean training errors of 4.37 and 8.11 minutes, respectively (corresponding to 26.7% and 49.7% differences from the training set mean). 
 
-**Figure 7. Best Model Prediction Quality vs Benchmark Models**
+**<h4>Figure 7. Best Model Prediction Quality vs Benchmark Models**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/ecc4bcea-3d5f-4fd3-883c-2755426158b8)
 *<h5> 'Best Model' was a Linear Regression Model (K-best features = 23).* 
@@ -84,7 +84,7 @@ After predictive features were generated for each puzzle, the best regression mo
 
 **2)** When individual feature classes or adjustments were systematically subtracted in the modeling stage ('Subtraction Analysis'), subtraction of 'Past Performance Features' resulted in by far the largest increase in model error relative to 'Best Model' (10.8%). The second largest increase in model error came with subtraction of the 'Answer Features' class (1.6%). Each other feature class or adjustment subtracted from 'Best Model' resulted in a <1% increase in model error. **Fig. 8** shows, in decreasing order of negative impact on model prediction quality, the effect of removing individual feature classes or adjustments (decay time-weighting; hatched bar) from the full 'Best Model'.    
 
-**Figure 8. Effect on Model Prediction Quality of Removing Individual Feature Classes or Adjustments from the Best Model**
+**<h4>Figure 8. Effect on Model Prediction Quality of Removing Individual Feature Classes or Adjustments from the Best Model**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/1e0c4f4f-62a0-49e9-a02a-2c71a464b600)
 
@@ -92,15 +92,15 @@ Because subtraction of 'Past Performance Features' resulted in substantial reduc
 
 The individual removal of two other features (**Fig. 9**; right panel) resulted in increases in model error comparable to that seen with removal of individual 'Past Performance Features'. Removal of 'Freshness Factor' (and two percentile derivatives) resulted in a 1.1% increase in mean training error compared to 'Best Model'. 'Freshness Factor' is a proprietary XWord Info measure that assesses the aggregate relative novelty of all answers in a given crossword puzzle as compared to those in all other crossword puzzles in the NYT archive. 'Wordplay #' is a somewhat subjective measure of clues that I manually evaluated and calculated clue-by-clue across (nearly) the entire puzzle sample completed by the GMS. Removal of this feature increased model training error by .6%. Apart from these features and those pictured in the left side of **Fig. 9** the removal of no other individual feature of any class increased model error by >.5%.     
 
-**Figure 9. Effect on Model Prediction Quality of Removing Key Individual Features**
+**<h4>Figure 9. Effect on Model Prediction Quality of Removing Key Individual Features**
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/85ef5034-2db7-48f6-994b-4e4140b0d2eb)
 
 ###
 **3)** 'Best Model' was discovered on a puzzle day-specific basis (BPDM), including for the lone 21x21 puzzle day Sunday (**Figure 10**). Because GMS mean solve time per puzzle day varied considerably, training errors in **Fig. 10** were normalized to percentage difference from training set mean for that puzzle day. The 'Dummy' model in this puzzle day-specific context is analogous to the 'Mean PDS GMST' benchmark model in **Fig. 7**, as the 'Dummy' for all 15x15 puzzles guessed the *overall sample mean* for each puzzle regardless of puzzle day. 
 
-Though the number of puzzles included in the BPDMs (N=266; +- 1) was much smaller than that in the all 15x15 puzzles model, each still outperformed its particular (not so dumb) 'Dummy'. However, high performance variability on later week puzzle days (Fri and Sat) can be seen in standard deviations that overlap with 'Dummy' model performance. Sunday (18.6% mean BPDM training error) and Monday (15.3%) stood out as the two most predictable individual puzzle days, with the other puzzle days ranging between 21-23% mean training error for BPDM. Finally, it is also worth noting that despite the much smaller sample size, each BPDM outperformed the all 15x15 puzzle days 'Best Model' (23.7%; see **Fig. 1** and associated text) on a % of mean solve time basis. 
+Though the number of puzzles included in the BPDMs (N=266; +- 1) was much smaller than that in the all 15x15 puzzles model, each still outperformed its particular (not so dumb) 'Dummy'. However, high performance variability on later week puzzle days (Fri and Sat) can be seen in standard deviations that overlap with 'Dummy' model performance. Sunday (18.6% mean BPDM training error) and Monday (15.3%) stood out as the two most predictable individual puzzle days, with the other puzzle days ranging between 21-23% mean training error for BPDM. Finally, it is also worth noting that despite the much smaller sample size, each BPDM outperformed the all 15x15 puzzle days 'Best Model' (23.7%; see **Fig. 7** and associated text) on a % of mean solve time basis. 
 
-**Figure 10. Best Puzzle Day-Specific Model (BPDM) Prediction Quality**
+**<h4>Figure 10. Best Puzzle Day-Specific Model (BPDM) Prediction Quality**
 
 ![image](https://github.com/ursus-maritimus-714/NYT-XWord-Modeling-Global-Median-Solver/assets/90933302/9653da3b-014f-4ca2-8c3a-d1d102735483)
 *<h5> BPDM for each day was a Linear Regression Model, with hyperparameter optimization specific to that puzzle day. Due to the relatively small number of puzzles in the sample for each puzzle day, an 80/20 training/testing split was used to find each BPDM (213/54 +-1 puzzles for each puzzle day). Data Quality Assessments for each BPDM were inconclusive regarding sufficiency of number of puzzles included.* 
