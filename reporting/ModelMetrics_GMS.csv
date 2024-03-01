@@ -42,19 +42,19 @@ GMS_RPB_l25,Selected out prior to final modeling stage,Past Performance,"Time-de
 GMS_RPB_l10_stdev,Selected out prior to final modeling stage,Past Performance,Standard deviation of time-decay weighted version of GMS_pds_l10_dw (recent solve variability),,,,,,,,,
 GMS_RPB_l25_stdev,Selected out prior to final modeling stage,Past Performance,Standard deviation of time-decay weighted version of GMS_pds_l25_dw (recent solve variability),,,,,,,,,
 ,,,,,,,,,,,,
-Table 2. Parameters/Hyperparameters and Outcome Measurements  (Training Set Cross-Validation) for Linear Regressor Model [BEST MODEL],,,,,,,,,,,,
+Table 2. Parameters/Hyperparameters and Outcome Measurements  (Training Set Cross-Validation) for Linear Regression Model [BEST MODEL by RMSE],,,,,,,,,,,,
 "NOTE: Unless specified below, parameter value is sklearn default (https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)",,,,,,,,,,,,
 Model,Parameter,Parameter,Parameter,Metric,Metric,Metric,Metric,,,,,
 Linear Regression,Scaler,Imputation,selectbest_k,R-squared,MAE,MSE,RMSE,,,,,
 ,Standard Scaler,Mean,23,0.77,2.73,15,3.87,,,,,
 ,,,,,,,,,,,,
-Table 3. Parameters/Hyperparameters and Outcome Measurements  (Training Set Cross-Validation) for Best Model (by RMSE) (Gradient Boosting Regressor Model),,,,,,,,,,,,
+Table 3. Parameters/Hyperparameters and Outcome Measurements  (Training Set Cross-Validation) for Gradient Boosting Regressor Model,,,,,,,,,,,,
 "NOTE: Unless specified below, parameter value is sklearn default (https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html)",,,,,,,,,,,,
 Model,Parameter,Parameter,Parameter,Parameter,Parameter,Parameter,Parameter,Parameter,Metric,Metric,Metric,Metric
 Gradient Boosting Regressor,Scaler,Imputation,n_estimators,learning_rate,max_depth,max_features,random_state,Subsample,R-squared,MAE,MSE,RMSE
 ,None,Median,130,0.06,2,10,47,0.6,0.77,2.76,15.48,3.88
 ,,,,,,,,,,,,
-Table 4. Parameters/Hyperparameters and Outcome Measurements  (Training Set Cross-Validation) for Hist Gradient Boosting Regressor Model,,,,,,,,,,,,
+Table 4. Parameters/Hyperparameters and Outcome Measurements  (Training Set Cross-Validation) for HistGradient Boosting Regressor Model,,,,,,,,,,,,
 "NOTE: Unless specified below, parameter value is sklearn default (https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingRegressor.html)",,,,,,,,,,,,
 Model,Parameter,Parameter,Parameter,Parameter,Parameter,Parameter,Parameter,Metric,Metric,Metric,Metric,
 Hist Gradient Boosting Regressor,Scaler,Imputation,max_iterations,learning_rate,max_depth,max_leaf_nodes,random_state,R-squared,MAE,MSE,RMSE,
